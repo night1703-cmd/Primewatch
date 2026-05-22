@@ -1,0 +1,8 @@
+{
+  "name": "Prime Watch Security",
+  "description": "Premium security, lifeguard, and housekeeping services tailored to commercial and residential spaces across the United Arab Emirates.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
