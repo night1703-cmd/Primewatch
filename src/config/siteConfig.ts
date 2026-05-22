@@ -115,7 +115,7 @@ export const siteConfig: SiteConfig = {
     primaryCta: 'Our Services',
     secondaryCta: 'Contact Us',
     // Uses the generated premium security lobby skyscraper asset
-    backgroundImage: '/src/assets/images/uae_security_hero_1779306974010.png',
+    backgroundImage: '/images/uae_security_hero_1779306974010.png',
   },
   about: {
     title: 'About Prime Watch Security',
@@ -159,7 +159,7 @@ export const siteConfig: SiteConfig = {
         'Physical Access Control & Gate Management',
         'VIP Close Protection & Executive Security Transport',
       ],
-      image: '/src/assets/images/uae_security_service_1779460535319.png',
+      image: '/images/uae_security_service_1779460535319.png',
       iconName: 'Shield',
     },
     {
@@ -173,7 +173,7 @@ export const siteConfig: SiteConfig = {
         'Emergency Action Planning & First Aid Response',
         'Daily Risk Assessment & Hazard Prevention Reports',
       ],
-      image: '/src/assets/images/uae_lifeguard_service_1779460513875.png',
+      image: '/images/uae_lifeguard_service_1779460513875.png',
       iconName: 'LifeBuoy',
     },
     {

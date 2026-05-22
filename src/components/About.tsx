@@ -140,7 +140,7 @@ export function About() {
                 {/* Primary Image Component */}
                 <div className="w-full h-full rounded-3xl overflow-hidden shadow-xl border border-slate-200/50 relative z-10">
                   <img
-                      src="/src/assets/images/uae_security_about_1779460489809.png"
+                      src="/images/uae_security_about_1779460489809.png"
                       alt="Prime Watch Security - Reliable Corporate Standards"
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                       referrerPolicy="no-referrer"
