@@ -5,7 +5,8 @@ import {
   Sliders,
   Users,
   Building,
-  Anchor,
+  GraduationCap,
+  HeartPulse,
   Hotel,
   Activity,
   CheckCircle,
@@ -16,12 +17,12 @@ import {
   FileSpreadsheet,
 } from 'lucide-react';
 
-type FacilityType = 'marine' | 'commercial' | 'residential' | 'retail' | 'event';
+type FacilityType = 'hospital' | 'school' | 'commercial' | 'residential' | 'retail' | 'event';
 
 interface PlanningResult {
   cameras: number;
   guards: number;
-  responseLevel: 'Rapid Dispatch' | 'Tier-1 Elite' | 'Standard Secure' | 'Marine Dedicated';
+  responseLevel: 'Rapid Dispatch' | 'Tier-1 Elite' | 'Standard Secure' | 'Emergency Priority';
   siraGrade: 'Grade A' | 'Grade B' | 'Grade C' | 'Premium VIP';
   complianceScore: number;
   recommendations: string[];
@@ -32,7 +33,7 @@ export function SecurityPlanner() {
   const [areaSize, setAreaSize] = useState<number>(15000); // in sq ft
   const [occupancy, setOccupancy] = useState<number>(120);
   const [smartFeatures, setSmartFeatures] = useState<boolean>(true);
-  const [hasMarineAccess, setHasMarineAccess] = useState<boolean>(false);
+  const [highSecurityMode, setHighSecurityMode] = useState<boolean>(false);
   const [result, setResult] = useState<PlanningResult>({
     cameras: 0,
     guards: 0,
@@ -42,21 +43,12 @@ export function SecurityPlanner() {
     recommendations: [],
   });
 
-  // Automatically switch marine configurations if facility type changes
-  useEffect(() => {
-    if (facilityType === 'marine') {
-      setHasMarineAccess(true);
-    } else {
-      setHasMarineAccess(false);
-    }
-  }, [facilityType]);
-
   // SIRA Compliance Calculation Logic
   useEffect(() => {
     let baseCameras = Math.ceil(areaSize / 2500);
     let baseGuards = Math.ceil(occupancy / 150);
     let siraGrade: 'Grade A' | 'Grade B' | 'Grade C' | 'Premium VIP' = 'Grade C';
-    let responseLevel: 'Rapid Dispatch' | 'Tier-1 Elite' | 'Standard Secure' | 'Marine Dedicated' = 'Standard Secure';
+    let responseLevel: 'Rapid Dispatch' | 'Tier-1 Elite' | 'Standard Secure' | 'Emergency Priority' = 'Standard Secure';
     let recommendations: string[] = [];
 
     // Facility-specific logic matching SIRA UAE requirements
@@ -70,15 +62,25 @@ export function SecurityPlanner() {
         'Continuous SIRA-compliant 31-day system CCTV archive retention.',
         'Perimeter monitoring with active virtual line-crossing smart alarms.',
       ];
-    } else if (facilityType === 'marine') {
-      baseCameras = Math.ceil(areaSize / 1500) + 2;
-      baseGuards = Math.ceil(occupancy / 50) + 2;
-      siraGrade = 'Premium VIP';
-      responseLevel = 'Marine Dedicated';
+    } else if (facilityType === 'hospital') {
+      baseCameras = Math.ceil(areaSize / 1800) + 8;
+      baseGuards = Math.max(3, Math.ceil(occupancy / 120) + 1);
+      siraGrade = 'Grade A';
+      responseLevel = 'Emergency Priority';
       recommendations = [
-        'Advanced weather-sealed thermal dual-lens CCTV tracking.',
-        'SIRA licensed marine safety lifeguard and certified vessel helmsmen.',
-        'Emergency coastal emergency link with maritime SAR authorities.',
+        'Continuous SIRA-compliant 24/7 CCTV tracking in all main lobbies, ER rooms, and public drug dispensaries.',
+        'Mandatory automated biometrics and physical visitor log registers for maternity & ICU units.',
+        'Active line-crossing virtual camera warnings in critical medical waste and oxygen storage zones.',
+      ];
+    } else if (facilityType === 'school') {
+      baseCameras = Math.ceil(areaSize / 2200) + 6;
+      baseGuards = Math.max(2, Math.ceil(occupancy / 200));
+      siraGrade = 'Grade B';
+      responseLevel = 'Tier-1 Elite';
+      recommendations = [
+        'SIRA certified child protection guard profiles deployed at main school pedestrian gates.',
+        'Complete registration auto-scanning (ANPR) at vehicle drop-off and student bus bay lanes.',
+        'High-sensitivity boundary perimeter alarm lines synced with local educational zone security offices.',
       ];
     } else if (facilityType === 'residential') {
       baseCameras = Math.ceil(areaSize / 4000) + 6;
@@ -117,9 +119,9 @@ export function SecurityPlanner() {
       recommendations.push('AI Analytics Active: System supports automated heatmaps and unattended piece of baggage flags.');
     }
 
-    if (hasMarineAccess && facilityType !== 'marine') {
+    if (highSecurityMode) {
       baseGuards += 1;
-      recommendations.push('Coastal Integration: Added dedicated waterfront patrol officer.');
+      recommendations.push('Strategic Backup: Active direct Dubai Police response & emergency telemetry active.');
     }
 
     // Compute synthetic compliance score based on current features
@@ -136,11 +138,12 @@ export function SecurityPlanner() {
       complianceScore: score,
       recommendations,
     });
-  }, [facilityType, areaSize, occupancy, smartFeatures, hasMarineAccess]);
+  }, [facilityType, areaSize, occupancy, smartFeatures, highSecurityMode]);
 
   const facilityCards: { type: FacilityType; label: string; icon: any; desc: string }[] = [
     { type: 'commercial', label: 'Commercial Complex', icon: Building, desc: 'Corporate towers & offices' },
-    { type: 'marine', label: 'Marine & Yacht', icon: Anchor, desc: 'Luxury vessels & marinas' },
+    { type: 'hospital', label: 'Hospital/Clinic', icon: HeartPulse, desc: 'Critical healthcare complexes' },
+    { type: 'school', label: 'School & College', icon: GraduationCap, desc: 'Educational campuses K-12' },
     { type: 'residential', label: 'Residential Tower', icon: Hotel, desc: 'Apartments & community gates' },
     { type: 'retail', label: 'Retail & Mall', icon: FileSpreadsheet, desc: 'High traffic shopping malls' },
     { type: 'event', label: 'Prestige Event', icon: Users, desc: 'VIP conferences & exhibitions' },
@@ -282,28 +285,27 @@ export function SecurityPlanner() {
               />
             </label>
 
-            {/* Toggle Waterfront patrolling support */}
+            {/* Toggle High Security / Rapid Hotline support */}
             <label className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer select-none transition-all duration-200
-              ${hasMarineAccess 
+              ${highSecurityMode 
                 ? 'border-[#C8102E]/30 bg-red-50/20' 
                 : 'border-slate-200 bg-slate-50/50 hover:bg-slate-50'
               }`}
             >
               <div className="flex items-center gap-3">
-                <div className={`p-1.5 rounded-lg ${hasMarineAccess ? 'bg-[#C8102E]/10 text-[#C8102E]' : 'bg-slate-100 text-slate-400'}`}>
-                  <Anchor className="w-4 h-4" />
+                <div className={`p-1.5 rounded-lg ${highSecurityMode ? 'bg-[#C8102E]/10 text-[#C8102E]' : 'bg-slate-100 text-slate-400'}`}>
+                  <ShieldAlert className="w-4 h-4" />
                 </div>
                 <div className="text-left">
-                  <span className="block text-xs font-bold text-slate-800 uppercase tracking-wide">Waterfront Access</span>
-                  <span className="block text-[10px] text-slate-400 font-sans">Requires certified marine patrol</span>
+                  <span className="block text-xs font-bold text-slate-800 uppercase tracking-wide">Emergency Link</span>
+                  <span className="block text-[10px] text-slate-400 font-sans">Active direct Dubai Police response</span>
                 </div>
               </div>
               <input
                 type="checkbox"
-                checked={hasMarineAccess}
-                disabled={facilityType === 'marine'}
-                onChange={(e) => setHasMarineAccess(e.target.checked)}
-                className="rounded accent-[#C8102E] w-4 h-4 cursor-pointer disabled:opacity-50"
+                checked={highSecurityMode}
+                onChange={(e) => setHighSecurityMode(e.target.checked)}
+                className="rounded accent-[#C8102E] w-4 h-4 cursor-pointer"
               />
             </label>
           </div>
@@ -404,8 +406,8 @@ export function SecurityPlanner() {
                   className="h-full bg-gradient-to-r from-red-600 to-[#C8102E]"
                   initial={{ width: '0%' }}
                   animate={{ 
-                    width: facilityType === 'event' || facilityType === 'retail' ? '100%' :
-                           facilityType === 'marine' ? '90%' : '75%' 
+                    width: facilityType === 'event' || facilityType === 'hospital' ? '100%' :
+                           facilityType === 'school' ? '90%' : '75%' 
                   }}
                   transition={{ duration: 0.5, ease: 'easeOut' }}
                 />

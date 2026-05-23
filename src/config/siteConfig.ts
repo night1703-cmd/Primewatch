@@ -110,7 +110,7 @@ export const siteConfig: SiteConfig = {
     { label: 'Contact', href: '#contact' },
   ],
   hero: {
-    headline: 'Your Trusted Security Partner in the UAE',
+    headline: 'Stay Secure, Stay Prime',
     subheading: 'Professional security, lifeguard, and housekeeping services tailored to your needs.',
     primaryCta: 'Our Services',
     secondaryCta: 'Contact Us',
@@ -243,7 +243,7 @@ export const siteConfig: SiteConfig = {
     {
       id: 'faq-1',
       question: 'What professional services does Prime Watch Security provide?',
-      answer: 'We provide specialized solutions across three primary divisions in the UAE: Manned Physical Security (Commercial Security, Residential Guarding, Control Room/CCTV Officers, Event Protection), Certified Lifeguards (for private pools, hospitality resorts, and aquatic centers), and Premium Housekeeping & Facilities maintenance.',
+      answer: 'We provide specialized solutions across three primary divisions in the UAE: Manned Physical Security (Commercial Security, Residential Guarding, Control Room/CCTV Officers, Event Protection), Certified Lifeguards (for private pools, hospitality resorts, and aquatic centers), and Premium Housekeeping',
     },
     {
       id: 'faq-2',
