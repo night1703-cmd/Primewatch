@@ -10,13 +10,14 @@ import {
   MessageSquare,
   Copy,
   Check,
-  ExternalLink
+  ExternalLink,
+  Globe
 } from 'lucide-react';
 import { Section } from './ui/Section';
 import { siteConfig } from '../config/siteConfig';
 
 export function Contact() {
-  const { phone, email, address, mapEmbedUrl } = siteConfig.contact;
+  const { phone, email, address, mapEmbedUrl, whatsapp } = siteConfig.contact;
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
 
@@ -37,29 +38,36 @@ export function Contact() {
       name: 'WhatsApp',
       desc: 'Instant operational response',
       icon: MessageSquare,
-      href: 'https://wa.me/971500000000',
+      href: whatsapp ? (whatsapp.startsWith('http') ? whatsapp : `https://wa.me/${whatsapp.replace(/\+/g, '').replace(/\s/g, '').replace(/-/g, '')}`) : 'https://wa.me/971501234567',
       color: 'text-emerald-500'
     },
     {
       name: 'LinkedIn',
-      desc: 'Corporate updates',
+      desc: 'Corporate updates & networking',
       icon: Linkedin,
-      href: 'https://linkedin.com',
+      href: 'https://www.linkedin.com/in/prime-watch-82b2b1411',
       color: 'text-blue-500'
     },
     {
       name: 'Instagram',
-      desc: 'Field operations & media',
+      desc: 'Field operations & media assets',
       icon: Instagram,
-      href: 'https://instagram.com',
+      href: 'https://www.instagram.com/primewatchae/',
       color: 'text-pink-500'
     },
     {
       name: 'Facebook',
-      desc: 'Community & reviews',
+      desc: 'Community connection & reviews',
       icon: Facebook,
-      href: 'https://facebook.com',
+      href: 'https://www.facebook.com/profile.php?id=61590047894438',
       color: 'text-indigo-500'
+    },
+    {
+      name: 'Official Website',
+      desc: 'Explore services online',
+      icon: Globe,
+      href: 'https://primewatch.ae',
+      color: 'text-[#C8102E]'
     }
   ];
 

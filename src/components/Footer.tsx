@@ -1,4 +1,4 @@
-import { ShieldAlert, Linkedin, Instagram, Facebook, Twitter, Phone, Mail, MapPin } from 'lucide-react';
+import { ShieldAlert, Linkedin, Instagram, Facebook, Twitter, Phone, Mail, MapPin, Globe } from 'lucide-react';
 import { siteConfig } from '../config/siteConfig';
 
 const socialMap = {
@@ -6,6 +6,7 @@ const socialMap = {
   Instagram: Instagram,
   Facebook: Facebook,
   Twitter: Twitter,
+  Globe: Globe,
 };
 
 export function Footer() {

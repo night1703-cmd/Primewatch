@@ -32,6 +32,7 @@ export interface ContactDetails {
   address: string;
   workingHours: string;
   mapEmbedUrl: string;
+  whatsapp: string;
 }
 
 export interface SiteConfig {
@@ -272,11 +273,12 @@ export const siteConfig: SiteConfig = {
     address: 'Business Bay, Sheikh Zayed Road, Office 1402, Prime Watch Tower, Dubai, United Arab Emirates',
     workingHours: 'Monday - Saturday: 8:00 AM - 6:00 PM (Operations 24/7)',
     mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14441.975411649961!2d55.264426868581704!3d25.18652317182283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f68311a681335%3A0xe5a3c2602738a9e7!2sBusiness%20Bay%20-%20Dubai!5e0!3m2!1sen!2sae!4v1716187893123!5m2!1sen!2sae',
+    whatsapp: '+971 50 123 4567',
   },
   socials: [
-    { name: 'LinkedIn', url: 'https://linkedin.com/company/primewatchsecurity-uae-placeholder', icon: 'Linkedin' },
-    { name: 'Instagram', url: 'https://instagram.com/primewatch_uae-placeholder', icon: 'Instagram' },
-    { name: 'Facebook', url: 'https://facebook.com/primewatchsecurityae-placeholder', icon: 'Facebook' },
-    { name: 'Twitter/X', url: 'https://twitter.com/primewatch_uae-placeholder', icon: 'Twitter' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/prime-watch-82b2b1411', icon: 'Linkedin' },
+    { name: 'Instagram', url: 'https://www.instagram.com/primewatchae/', icon: 'Instagram' },
+    { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61590047894438', icon: 'Facebook' },
+    { name: 'Website', url: 'https://primewatch.ae', icon: 'Globe' },
   ],
 };
